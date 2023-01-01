@@ -2,6 +2,21 @@
 const router = require('express').Router()
 const RESOURCES = require('./model')
 
+router.get('/', (request, response, next) => {
+     RESOURCES.getAll()
+          .then(resources => {
+               response.json(resources)
+          })
+          .catch(next)
+})
+router.get('/:resource_id', (request, response, next) => {
+     RESOURCES.getById(request.params.resource_id)
+          .then(resource => {
+               response.status(200).json(resource)
+          })
+          .catch(next)
+})
+
 
 
 

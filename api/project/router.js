@@ -3,6 +3,20 @@ const router = require('express').Router()
 const PROJECTS = require('./model')
 
 
+router.get('/', (request, response, next) => {
+     PROJECTS.getAll()
+          .then(projects => {
+               response.json(projects)
+          })
+          .catch(next)
+})
+router.get('/:project_id', (request, response, next) => {
+     PROJECTS.getById(request.params.project_id)
+          .then(project => {
+               response.status(200).json(project)
+          })
+          .catch(next)
+})
 
 
 
