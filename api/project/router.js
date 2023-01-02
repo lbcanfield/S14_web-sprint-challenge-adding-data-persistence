@@ -18,6 +18,13 @@ router.get('/:project_id', (request, response, next) => {
           .catch(next)
 })
 
+router.post('/', (request, response, next) => {
+     PROJECTS.create(request.body)
+          .then(project => {
+               response.status(200).json(project)
+          })
+          .catch(next)
+})
 
 
 

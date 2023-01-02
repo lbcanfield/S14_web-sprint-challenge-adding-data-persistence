@@ -1,11 +1,42 @@
 // build your `Project` model here
-function getAll() {
-     return Promise.resolve('Getting all projects works')
+const db = require('../../data/dbConfig')
+
+async function getAll() {
+     const projects = await db('projects as p')
+     const result = []
+
+     projects.forEach(project => {
+          result.push({
+               project_id: project.project_id,
+               project_name: project.project_name,
+               project_description: project.project_description,
+               project_completed: project.project_completed ? true : false
+          })
+     })
+
+     return result
 }
 
-function getById(project_id) {
-     return Promise.resolve(`Project with id of ${project_id} works`)
+async function getById(project_id) {
+     const projects = await db('projects as p')
+          .where('p.project_id', project_id)
+
+     const project = {
+          project_id: projects[0].project_id,
+          project_name: projects[0].project_name,
+          project_description: projects[0].project_description,
+          project_completed: projects[0].project_completed ? true : false
+     }
+
+     return project
+}
+
+function create(project) {
+     return db('projects').insert(project)
+          .then(([project_id]) => {
+               return getById(project_id)
+          })
 }
 
 
-module.exports = { getAll, getById }
+module.exports = { getAll, getById, create }
