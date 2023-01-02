@@ -17,6 +17,15 @@ router.get('/:task_id', (request, response, next) => {
           .catch(next)
 })
 
+router.post('/', (request, response, next) => {
+     TASKS.create(request.body)
+          .then(task => {
+               response.status(200).json(task)
+          })
+          .catch(next)
+})
+
+
 
 
 

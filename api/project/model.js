@@ -2,8 +2,8 @@
 const db = require('../../data/dbConfig')
 
 async function getAll() {
-     const projects = await db('projects as p')
      const result = []
+     const projects = await db('projects as p')
 
      projects.forEach(project => {
           result.push({

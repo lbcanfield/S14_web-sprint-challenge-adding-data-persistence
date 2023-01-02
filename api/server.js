@@ -10,8 +10,8 @@ server.use(express.json())                                                      
 
 //Routers
 server.use('/api/projects', projectsRouter)                                     //use statement to take advantage of the functions in /project/router.js
-server.use('/api/resource', resourcesRouter)                                    //use statement to take advantage of the functions in /resource/router.js
-server.use('/api/task', tasksRouter)                                            //use statement to take advantage of the functions in /task/router.js
+server.use('/api/resources', resourcesRouter)                                    //use statement to take advantage of the functions in /resource/router.js
+server.use('/api/tasks', tasksRouter)                                            //use statement to take advantage of the functions in /task/router.js
 
 //Server Catchall Use 
 server.use('*', (request, response) => {

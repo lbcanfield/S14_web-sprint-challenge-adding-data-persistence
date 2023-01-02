@@ -9,14 +9,14 @@ router.get('/', (request, response, next) => {
           })
           .catch(next)
 })
-router.get('/:resource_id', (request, response, next) => {
-     RESOURCES.getById(request.params.resource_id)
+
+router.post('/', (request, response, next) => {
+     RESOURCES.create(request.body)
           .then(resource => {
                response.status(200).json(resource)
           })
           .catch(next)
 })
-
 
 
 
